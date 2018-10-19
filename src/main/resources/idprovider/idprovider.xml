@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<id-provider xmlns="urn:enonic:xp:model:1.0">
+	<!--
+		http://xp.readthedocs.io/en/stable/developer/id-provider/index.html
+
+		MIXED: The users are stored in a remote system and the groups in the
+		user store. The users in the user store are only a snapshot view of this
+		remote system and therefore the users are not editable in the admin tool
+		Users.
+	-->
+	<mode>MIXED</mode>
+	<config>
+
+		<option-set name="securitySchemesOptionSet">
+			<label>Security schemes</label>
+			<expanded>false</expanded>
+			<occurrences minimum="1" maximum="1"/>
+			<options minimum="1" maximum="6">
+				<option name="basic">
+					<label>Basic</label>
+					<items>
+					</items>
+				</option>
+				<option name="apiKey">
+					<label>API Key</label>
+					<items>
+						<option-set name="inOptionSet">
+							<label>In</label>
+							<expanded>false</expanded>
+							<occurrences minimum="1" maximum="1"/>
+							<options minimum="1" maximum="3">
+								<option name="header">
+									<default>true</default>
+									<label>Header</label>
+									<items>
+										<input name="name" type="TextLine">
+											<label>Name</label>
+											<occurrences minimum="1" maximum="1"/>
+											<default>X-API-Key</default>
+										</input>
+									</items>
+								</option>
+								<option name="query">
+									<default>true</default>
+									<label>Query</label>
+									<items>
+										<input name="name" type="TextLine">
+											<label>Name</label>
+											<occurrences minimum="1" maximum="1"/>
+											<default>api_key</default>
+										</input>
+									</items>
+								</option>
+								<option name="cookie">
+									<default>true</default>
+									<label>Cookie</label>
+									<items>
+										<input name="name" type="TextLine">
+											<label>Name</label>
+											<occurrences minimum="1" maximum="1"/>
+											<default>X-API-KEY</default>
+										</input>
+									</items>
+								</option>
+							</options>
+						</option-set><!-- inOptionSet -->
+						<item-set name="users">
+							<label>User</label>
+							<occurrences minimum="0" maximum="0"/>
+							<items>
+								<input name="name" type="TextLine">
+									<label>Name</label>
+									<occurrences minimum="1" maximum="1"/>
+								</input>
+								<input name="userStore" type="TextLine">
+									<label>Userstore</label>
+									<occurrences minimum="0" maximum="1"/>
+								</input>
+								<item-set name="keys">
+									<label>Key</label>
+									<occurrences minimum="0" maximum="0"/>
+									<items>
+										<input name="clientName" type="TextLine">
+											<label>Client name</label>
+											<occurrences minimum="0" maximum="1"/>
+										</input>
+										<input name="key" type="TextLine">
+											<label>Key</label>
+											<occurrences minimum="1" maximum="1"/>
+										</input>
+									</items>
+								</item-set><!-- keys -->
+							</items>
+						</item-set><!-- users -->
+					</items>
+				</option>
+				<option name="bearer">
+					<label>Bearer</label>
+					<items>
+					</items>
+				</option>
+				<option name="oauth2">
+					<label>OAuth 2.0</label>
+					<items>
+					</items>
+				</option>
+				<option name="oidc">
+					<label>OpenID Connect Discovery</label>
+					<items>
+					</items>
+				</option>
+				<option name="cookie">
+					<label>Cookie</label>
+					<items>
+					</items>
+				</option>
+			</options>
+		</option-set><!-- securitySchemesOptionSet -->
+	</config>
+</id-provider>
